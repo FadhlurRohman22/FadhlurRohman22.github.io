@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en" id="home">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Fadhlur Rohman</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Viga&display=swap" rel="stylesheet">
+    <script>
+    $(document).ready(function(){
+      // Add smooth scrolling to all links
+      $("a").on('click', function(event) {
+    
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+          // Prevent default anchor click behavior
+          event.preventDefault();
+    
+          // Store hash
+          var hash = this.hash;
+    
+          // Using jQuery's animate() method to add smooth page scroll
+          // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top
+          }, 800, function(){
+    
+            // Add hash (#) to URL when done scrolling (default click behavior)
+            window.location.hash = hash;
+          });
+        } // End if
+      });
+    });
+    </script>
+<script>
+  let modalId = $('#image-gallery');
+  $(document)
+    .ready(function () {
+      loadGallery(true, 'a.thumbnail');
+      function disableButtons(counter_max, counter_current) {
+        $('#show-prev-image, #show-next-image')
+          .show();
+        if (counter_max === counter_current) {
+          $('#show-next-image')
+            .hide();
+        } else if (counter_current === 1) {
+          $('#show-prev-image')
+            .hide();
+        }
+      }
+      function loadGallery(setIDs, setClickAttr) {
+        let current_image, selector, counter = 0;
+        $('#show-next-image, #show-prev-image')
+          .click(function () {
+            if ($(this)
+              .attr('id') === 'show-prev-image') {
+              current_image--;
+            } else {
+              current_image++;
+            }
+            selector = $('[data-image-id="' + current_image + '"]');
+            updateGallery(selector);
+          });
+        function updateGallery(selector) {
+          let $sel = selector;
+          current_image = $sel.data('image-id');
+          $('#image-gallery-title')
+            .text($sel.data('title'));
+          $('#image-gallery-image')
+            .attr('src', $sel.data('image'));
+          disableButtons(counter, $sel.data('image-id'));
+        }
+        if (setIDs == true) {
+          $('[data-image-id]')
+            .each(function () {
+              counter++;
+              $(this)
+                .attr('data-image-id', counter);
+            });
+        }
+        $(setClickAttr)
+          .on('click', function () {
+            updateGallery($(this));
+          });
+      }
+    });</script>
+
+    <style type="text/css">
+    html {
+      scroll-behavior: smooth;
+    }
+    /* Navbar */
+        .navbar-brand{
+          font-size: 32px;
+          font-family: 'Viga', sans-serif;
+        }
+        .navbar{
+          z-index: 1;
+        }
+    /* Akhir Navbar */
+
+    /* Jumbotron */
+        .jumbotron{
+          background-image: url(img/jumbotron-bg.jpg);
+          background-size: cover;
+          position: relative;
+          height: 640px;
+          text-align: center;
+        }
+        .jumbotron img{
+          width: 200px;
+          border: 5px solid #666;
+          margin-top: 150px;
+          z-index: 1;
+          position: relative;
+        }
+        .jumbotron .display-4, p.lead{
+          color: white;
+          text-align: center;
+          position: relative;
+          z-index: 1;
+        }
+        .jumbotron::after{
+          content: '';
+          display: block;
+          width: 100%;
+          height: 100%;
+          background-image: linear-gradient(to top , rgba(0,0,0,1), rgba(0,0,0,0));
+          position: absolute;
+          bottom: 0;
+        }
+      /* AkhirJumbotron */
+
+      /* Utility */
+        hr{
+          width: 250px;
+          border-top: 3px solid #999;
+        }
+      section{
+        padding-top: 40px;
+        min-height: 400px;
+      }
+      .tombol{
+        text-transform: uppercase;
+        border-radius: 40px;
+      }
+      /* Akhir Utility */
+      /* Portfolio */
+      .portfolio{
+        background-color: #eee;
+      }
+      .gp{
+        display: flex;
+      }
+      /* Akhir Portfolio */
+      /* Contact */
+      .contact{
+        min-height: 800px;
+      }
+      /* Akhir Contact */
+      /* Footer */
+      footer{
+        position: absolute fixed;
+        bottom: 0;
+        width: 100%;
+        min-height: 100px;
+        background-color: black;
+        color: white;
+        padding-top: 30px;
+        padding-bottom: 30px;
+      }
+      footer svg{
+        color: red;
+      }
+      /* Akhir Footer */
+      /* Responsive */
+        @media (min-width: 992px){
+
+          .nav-link{
+            text-transform: uppercase;
+            margin-right: 30px;
+          }
+          .navbar-brand, .nav-link{
+          color: white !important;
+          text-shadow: 1px 1px 1px rgba(0,0,0,0.7);
+        }
+          .nav-link:hover::after{
+            content: '';
+            display: block;
+            border-bottom: 3px solid #0b63dc;
+            width: 50%;
+            margin: auto;
+            padding-bottom: 5px;
+            margin-bottom: -8px;
+          }
+          .jumbotron{
+          margin-top: -75px;
+        }
+        }
+    </style>
+    
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+      <a class="navbar-brand" href="#home">Fadhlur Rohman</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#portfolio">Portfolio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact Us</a>
+            </li>
+        </div>
+      </div>
+    </nav>
+
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <img src="img/profile1.png" class="rounded-circle profile" alt="">
+        <h1 class="display-4">FADHLUR ROHMAN</h1>
+        <p class="lead">Entrepreneur | Design PCB | Front End</p>
+      </div>
+    </div>
+    <!-- About -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h2>About</h2>
+            <hr/>
+          </div>
+        </div>
+        <div class="row ">
+          <div class="col-sm-5 offset-1">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur veniam corporis aliquid harum quia quibusdam illo magnam vel, ducimus libero, eius dicta quisquam sequi in nulla commodi odio officia? Atque.</p>
+          </div>
+          <div class="col-sm-5 offset-1">
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur veniam corporis aliquid harum quia quibusdam illo magnam vel, ducimus libero, eius dicta quisquam sequi in nulla commodi odio officia? Atque.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- PortFolio -->
+    <section class="portfolio" id="portfolio">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <h2>Portfolio</h2>
+            <hr/>
+          </div>
+        </div>
+
+        <div class="row text-center gp">
+          <div class="col-sm-4 mb-3">
+            <img src="img/thumbs/1.png" class="img-thumbnail">
+          </div>
+          <div class="col-sm-4 mb-3">
+            <img src="img/thumbs/2.png" class="img-thumbnail">
+          </div>
+          <div class="col-sm-4 mb-3">
+            <img src="img/thumbs/3.png" class="img-thumbnail">
+          </div>
+          <div class="col-sm-4 mb-3">
+            <img src="img/thumbs/4.png" class="img-thumbnail">
+          </div>
+          <div class="col-sm-4 mb-3">
+            <img src="img/thumbs/5.png" class="img-thumbnail">
+          </div><div class="col-sm-4 mb-3">
+            <img src="img/thumbs/6.png" class="img-thumbnail">
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Akhir Portfolio -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <h2>Contact</h2>
+            <hr/>
+          </div>
+        </div>
+
+        <div class="row justify-content-center mt-5">
+          <div class="col-sm-4"> 
+            <div class="card text-white bg-primary text-center mb-3">
+              <div class="card-body">
+                <h2>Contact Us</h2>
+              </div>
+            </div>
+
+            <ul class="list-group mb-5">
+              <li class="list-group-item"><h3>Location</h3></li>
+              <li class="list-group-item">My House</li>
+              <li class="list-group-item">Desa Somowinangun, Kec Karangbinangun</li>
+              <li class="list-group-item">Lamongan,East Java, Indonesia</li>
+            </ul>
+          </div>
+
+          <div class="col-sm-6 ">
+            <form action="">
+              <div class="form-group">
+                <label for="nama">Nama</label>
+                <input type="text" name="" id="nama" class="form-control" placeholder="Masukkan Nama">
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="" id="email" class="form-control" placeholder="Masukkan email">
+              </div>
+              <div class="form-group">
+                <label for="telp">No Telepon</label>
+                <input type="tel" name="" id="telp" class="form-control" placeholder="Masukkan No Telepon">
+              </div>
+              <div class="form-group">
+              <textarea name="" id="" class="form-control" rows="10"></textarea>
+            </div>
+                <button type="submit" class="btn btn-primary">Send Messenger</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-sm-12">
+            <p>&copy Copyright 2020 | built with <svg class="bi bi-heart-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" clip-rule="evenodd"/>
+            </svg> By. <a href="https://www.instagram.com/fadhil_rahman22">Fadhlur Rohman</a> </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <a href="" class="btn btn-danger">Subscribe</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Akhir About -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
